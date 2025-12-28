@@ -16,7 +16,24 @@ Este guia mostra como fazer deploy do backend VeniFretes no Railway.
 4. Autorize o Railway a acessar seu GitHub
 5. Selecione o repositório `veni-fretes-backend`
 
-## Passo 2: Adicionar PostgreSQL
+## Passo 2: Configurar Banco de Dados
+
+Você tem duas opções para o banco de dados:
+
+### Opção A: Usar NeonDB (Recomendado)
+
+NeonDB oferece plano gratuito mais generoso e melhor performance para PostgreSQL serverless.
+
+1. Acesse [neon.tech](https://neon.tech) e faça login
+2. Crie um novo projeto (ou use um existente)
+3. Copie a **Connection String** do NeonDB:
+   - Formato: `postgresql://username:password@ep-xxx.region.aws.neon.tech/dbname?sslmode=require`
+4. No Railway, vá em **"Variables"** do seu serviço
+5. Adicione a variável `DATABASE_URL` com a connection string do NeonDB
+
+**Importante**: Ao usar NeonDB, **NÃO** adicione PostgreSQL no Railway.
+
+### Opção B: Usar PostgreSQL do Railway
 
 1. No projeto Railway, clique em **"New"**
 2. Selecione **"Database"** → **"Add PostgreSQL"**
@@ -30,7 +47,13 @@ No painel do seu serviço backend, vá em **"Variables"** e adicione:
 ### Variáveis Obrigatórias
 
 ```bash
-# DATABASE_URL já é criada automaticamente pelo Railway quando você adiciona PostgreSQL
+# DATABASE_URL
+# Se usar NeonDB (Opção A): Cole a connection string do NeonDB
+DATABASE_URL=postgresql://user:password@ep-xxx.region.aws.neon.tech/dbname?sslmode=require
+# Se usar PostgreSQL do Railway (Opção B): Esta variável é criada automaticamente
+
+# Spring Profile
+SPRING_PROFILES_ACTIVE=prod
 
 # JWT Configuration
 JWT_SECRET=seu-secret-super-seguro-aqui-min-512-bits-change-this

@@ -186,12 +186,50 @@ Para desenvolvimento, é mais que suficiente!
 
 ---
 
-## 🚀 Deploy em Produção
+## 🚀 Deploy em Produção com NeonDB
 
-Ao fazer deploy (Render, Railway, Vercel, etc.), configure a variável de ambiente:
+### Conectar NeonDB ao Railway
+
+**Vantagem**: O NeonDB tem plano gratuito mais generoso que o PostgreSQL do Railway.
+
+#### Passo 1: Obter Connection String do NeonDB
+
+1. Acesse o dashboard do NeonDB: https://console.neon.tech
+2. Selecione seu projeto `venifretes-backend`
+3. Na página inicial do projeto, localize a seção **Connection Details**
+4. Copie a **Connection string**:
+   ```
+   postgresql://username:password@ep-xxx.region.aws.neon.tech/neondb?sslmode=require
+   ```
+
+#### Passo 2: Configurar no Railway
+
+1. Acesse seu projeto no Railway: https://railway.app
+2. Selecione o serviço do backend
+3. Vá em **"Variables"**
+4. Clique em **"New Variable"**
+5. Adicione:
+   - **Key**: `DATABASE_URL`
+   - **Value**: Cole a connection string do NeonDB
+6. Adicione também:
+   - **Key**: `SPRING_PROFILES_ACTIVE`
+   - **Value**: `prod`
+
+#### Passo 3: Redeploy
+
+O Railway fará redeploy automaticamente ao salvar as variáveis.
+
+**Importante**:
+- ❌ **NÃO** adicione PostgreSQL no Railway se estiver usando NeonDB
+- ✅ Use apenas a variável `DATABASE_URL` apontando para o NeonDB
+
+### Deploy em Outras Plataformas
+
+Ao fazer deploy (Render, Heroku, etc.), configure a variável de ambiente:
 
 ```bash
 DATABASE_URL=postgresql://user:pass@neon-host.neon.tech/neondb?sslmode=require
+SPRING_PROFILES_ACTIVE=prod
 ```
 
 O Spring Boot detectará automaticamente e usará essa configuração.
