@@ -1,0 +1,44 @@
+# Railway Ignore - arquivos que não precisam ser enviados para o Railway
+
+# Documentation
+*.md
+!README.md
+
+# Development files
+.env
+.env.local
+.env.development
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+logs_startup.txt
+
+# Test results
+VeniFretes API.postman_test_run.json
+
+# Build artifacts (serão gerados no Railway)
+target/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker (não usado no Railway)
+docker-compose.yml
+Dockerfile
+
+# Claude Code
+.claude/
