@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: venifretes-postgres
+    environment:
+      POSTGRES_DB: venifretes
+      POSTGRES_USER: venifretes
+      POSTGRES_PASSWORD: venifretes123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - venifretes-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U venifretes"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: venifretes-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@venifretes.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - venifretes-network
+
+volumes:
+  postgres_data:
+
+networks:
+  venifretes-network:
+    driver: bridge
