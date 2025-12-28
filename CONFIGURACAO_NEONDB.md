@@ -188,9 +188,9 @@ Para desenvolvimento, é mais que suficiente!
 
 ## 🚀 Deploy em Produção com NeonDB
 
-### Conectar NeonDB ao Railway
+### Conectar NeonDB ao Render (Recomendado)
 
-**Vantagem**: O NeonDB tem plano gratuito mais generoso que o PostgreSQL do Railway.
+**Vantagem**: O NeonDB tem plano gratuito mais generoso (0.5 GB) que o PostgreSQL do Render.
 
 #### Passo 1: Obter Connection String do NeonDB
 
@@ -202,30 +202,30 @@ Para desenvolvimento, é mais que suficiente!
    postgresql://username:password@ep-xxx.region.aws.neon.tech/neondb?sslmode=require
    ```
 
-#### Passo 2: Configurar no Railway
+#### Passo 2: Configurar no Render
 
-1. Acesse seu projeto no Railway: https://railway.app
-2. Selecione o serviço do backend
-3. Vá em **"Variables"**
-4. Clique em **"New Variable"**
-5. Adicione:
+1. Acesse seu projeto no Render: https://render.com
+2. Selecione o web service do backend
+3. Vá em **"Environment"**
+4. Adicione as variáveis:
    - **Key**: `DATABASE_URL`
    - **Value**: Cole a connection string do NeonDB
-6. Adicione também:
    - **Key**: `SPRING_PROFILES_ACTIVE`
    - **Value**: `prod`
+5. Salve as alterações
 
-#### Passo 3: Redeploy
+#### Passo 3: Deploy Automático
 
-O Railway fará redeploy automaticamente ao salvar as variáveis.
+O Render fará deploy automaticamente ao salvar as variáveis.
 
 **Importante**:
-- ❌ **NÃO** adicione PostgreSQL no Railway se estiver usando NeonDB
+- ❌ **NÃO** crie PostgreSQL no Render se estiver usando NeonDB
 - ✅ Use apenas a variável `DATABASE_URL` apontando para o NeonDB
+- ✅ Certifique-se que a URL tem `?sslmode=require` no final
 
 ### Deploy em Outras Plataformas
 
-Ao fazer deploy (Render, Heroku, etc.), configure a variável de ambiente:
+Ao fazer deploy (Heroku, Railway, etc.), configure a variável de ambiente:
 
 ```bash
 DATABASE_URL=postgresql://user:pass@neon-host.neon.tech/neondb?sslmode=require

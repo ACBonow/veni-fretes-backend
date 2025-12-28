@@ -1,8 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = "mvn clean install -DskipTests"
-
-[deploy]
-startCommand = "java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
