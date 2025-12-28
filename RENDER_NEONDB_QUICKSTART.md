@@ -41,7 +41,14 @@ Deploy do VeniFretes Backend usando Render + NeonDB.
 1. Login no Render
 2. **"New +"** → **"Web Service"**
 3. **"Connect repository"** → Selecione `veni-fretes-backend`
-4. Render detecta automaticamente o `render.yaml` ✅
+4. Configuração:
+   - **Name**: `venifretes-backend`
+   - **Branch**: `main`
+   - **Root Directory**: deixe vazio
+   - **Environment**: Render detecta automaticamente como Java (pelo pom.xml)
+   - **Build Command**: `mvn clean install -DskipTests`
+   - **Start Command**: `java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar`
+   - **Plan**: Free
 
 #### B. Configurar Variáveis
 

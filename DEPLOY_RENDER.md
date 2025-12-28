@@ -34,7 +34,14 @@ Este guia mostra como fazer deploy do backend VeniFretes no Render.
 1. Acesse [render.com](https://render.com) e faça login
 2. Clique em **"New +"** → **"Web Service"**
 3. Conecte seu repositório GitHub `veni-fretes-backend`
-4. Render detectará automaticamente o `render.yaml`
+4. Configure o serviço:
+   - **Name**: `venifretes-backend`
+   - **Branch**: `main`
+   - **Root Directory**: (deixe vazio)
+   - **Environment**: Render detecta Java automaticamente via `pom.xml`
+   - **Build Command**: `mvn clean install -DskipTests`
+   - **Start Command**: `java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar`
+   - **Plan**: Free
 5. Configure as variáveis de ambiente:
 
 ```bash
@@ -74,7 +81,14 @@ curl https://venifretes-backend.onrender.com/actuator/health
 
 1. Clique em **"New +"** → **"Web Service"**
 2. Conecte o repositório `veni-fretes-backend`
-3. Configure as variáveis de ambiente:
+3. Configure o serviço:
+   - **Name**: `venifretes-backend`
+   - **Branch**: `main`
+   - **Environment**: Detectado automaticamente (Java)
+   - **Build Command**: `mvn clean install -DskipTests`
+   - **Start Command**: `java -Dserver.port=$PORT $JAVA_OPTS -jar target/*.jar`
+   - **Plan**: Free
+4. Configure as variáveis de ambiente:
 
 ```bash
 DATABASE_URL=<cole-a-internal-database-url-aqui>
