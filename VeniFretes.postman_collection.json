@@ -1,0 +1,870 @@
+{
+	"info": {
+		"name": "VeniFretes API",
+		"description": "Collection completa da API VeniFretes - Backend Spring Boot com NeonDB + Sistema de Pontos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_postman_id": "venifretes-api-v2",
+		"version": "2.0.0"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "freteiro_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Auth",
+			"item": [
+				{
+					"name": "Registrar Freteiro",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set('access_token', jsonData.accessToken);",
+									"    console.log('Token salvo:', jsonData.accessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"João Silva\",\n  \"email\": \"joao.silva@example.com\",\n  \"telefone\": \"51999999999\",\n  \"password\": \"senha123\",\n  \"cidade\": \"Pelotas\",\n  \"estado\": \"RS\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "register"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set('access_token', jsonData.accessToken);",
+									"    console.log('Token salvo:', jsonData.accessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"joao.silva@example.com\",\n  \"password\": \"senha123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me (Usuário Logado)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/auth/me",
+							"host": ["{{base_url}}"],
+							"path": ["api", "auth", "me"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Freteiros (Público)",
+			"item": [
+				{
+					"name": "Listar Freteiros (Ranking)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros?page=0&size=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "cidade",
+									"value": "Pelotas",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "RS",
+									"disabled": true
+								},
+								{
+									"key": "avaliacaoMinima",
+									"value": "4.0",
+									"disabled": true
+								},
+								{
+									"key": "busca",
+									"value": "joão",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar por Cidade (Com Pontos)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros?cidade=Pelotas&estado=RS&page=0&size=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros"],
+							"query": [
+								{
+									"key": "cidade",
+									"value": "Pelotas",
+									"description": "Ranking considera pontos desta cidade"
+								},
+								{
+									"key": "estado",
+									"value": "RS"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Freteiro por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set('freteiro_id', jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por Slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/slug/joao-silva",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "slug", "joao-silva"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Avaliações do Freteiro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes?page=0&size=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Lista todas as avaliações aprovadas do freteiro"
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Avaliação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nota\": 5,\n  \"nomeAvaliador\": \"Maria Santos\",\n  \"comentario\": \"Excelente serviço, muito pontual!\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes"]
+						},
+						"description": "Cria uma nova avaliação (pendente de aprovação)"
+					},
+					"response": []
+				},
+				{
+					"name": "Estatísticas de Avaliações",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes/stats",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes", "stats"]
+						},
+						"description": "Retorna estatísticas das avaliações (média, distribuição por nota, total)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Tracking",
+			"item": [
+				{
+					"name": "Registrar Visualização",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"freteiroId\": 1,\n  \"tipo\": \"VISUALIZACAO_PERFIL\",\n  \"origem\": \"listagem\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tracking",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tracking"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Clique WhatsApp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"freteiroId\": 1,\n  \"tipo\": \"CLIQUE_WHATSAPP\",\n  \"origem\": \"perfil_detalhado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tracking",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tracking"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Clique Telefone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"freteiroId\": 1,\n  \"tipo\": \"CLIQUE_TELEFONE\",\n  \"origem\": \"perfil_detalhado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tracking",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tracking"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Clique Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"freteiroId\": 1,\n  \"tipo\": \"CLIQUE_CARD\",\n  \"origem\": \"home\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tracking",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tracking"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Avaliações",
+			"item": [
+				{
+					"name": "Listar Avaliações do Freteiro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes?page=0&size=10",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Avaliação",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nota\": 5,\n  \"comentario\": \"Excelente serviço! Pontual e cuidadoso com a carga.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estatísticas de Avaliações",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/freteiros/1/avaliacoes/stats",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiros", "1", "avaliacoes", "stats"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5. Dashboard Freteiro",
+			"item": [
+				{
+					"name": "Meu Perfil",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/perfil",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "perfil"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Perfil",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"telefone\": \"51998887777\",\n  \"cidade\": \"Porto Alegre\",\n  \"estado\": \"RS\",\n  \"descricao\": \"Freteiro com 10 anos de experiência. Atendo toda região metropolitana.\",\n  \"areasAtendidas\": [\"Porto Alegre\", \"Canoas\", \"Novo Hamburgo\", \"São Leopoldo\"],\n  \"tiposVeiculo\": [\"VAN\", \"CAMINHAO_PEQUENO\"],\n  \"tiposServico\": [\"MUDANCA\", \"ENTREGA\", \"TRANSPORTE_CARGAS\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/perfil",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "perfil"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dashboard (Métricas)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/dashboard",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "dashboard"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. Planos",
+			"item": [
+				{
+					"name": "Listar Planos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planos",
+							"host": ["{{base_url}}"],
+							"path": ["api", "planos"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Plano por Tipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planos/MASTER",
+							"host": ["{{base_url}}"],
+							"path": ["api", "planos", "MASTER"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. Actuator",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health",
+							"host": ["{{base_url}}"],
+							"path": ["actuator", "health"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/info",
+							"host": ["{{base_url}}"],
+							"path": ["actuator", "info"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics",
+							"host": ["{{base_url}}"],
+							"path": ["actuator", "metrics"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8. Pontos Ranking ⭐ NOVO",
+			"item": [
+				{
+					"name": "Simular Compra de Pontos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token JWT do freteiro MASTER"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/pontos/simular?cidade=Pelotas&pontos=100",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "pontos", "simular"],
+							"query": [
+								{
+									"key": "cidade",
+									"value": "Pelotas",
+									"description": "Cidade onde quer melhorar posição"
+								},
+								{
+									"key": "pontos",
+									"value": "100",
+									"description": "Quantidade de pontos (min: 10, max: 500)"
+								}
+							]
+						},
+						"description": "Simula a compra de pontos e mostra:\n- Posição atual\n- Posição estimada após compra\n- Valor total com desconto\n- Concorrentes na frente\n\n**Desconto por volume:**\n- 50+ pontos: 10%\n- 100+ pontos: 20%\n- 200+ pontos: 30%\n- 500 pontos: 40%"
+					},
+					"response": []
+				},
+				{
+					"name": "Comprar Pontos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token JWT do freteiro MASTER"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cidade\": \"Pelotas\",\n  \"quantidadePontos\": 100,\n  \"metodoPagamento\": \"PIX\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/pontos/comprar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "pontos", "comprar"]
+						},
+						"description": "Compra pontos extras para melhorar posição no ranking.\n\n**Requisitos:**\n- Apenas freteiros com plano MASTER\n- Mínimo: 10 pontos\n- Máximo: 500 pontos por transação\n- Métodos: PIX, CREDITO, DEBITO\n\n**Retorna:**\n- Transaction ID\n- QR Code PIX (se PIX)\n- Link de pagamento\n- Posição estimada\n- Validade: 30 dias"
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Status dos Pontos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/pontos/status?cidade=Pelotas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "pontos", "status"],
+							"query": [
+								{
+									"key": "cidade",
+									"value": "Pelotas"
+								}
+							]
+						},
+						"description": "Consulta o status atual dos pontos em uma cidade:\n- Pontos ativos\n- Pontos gastos/expirados\n- Data de expiração\n- Dias restantes\n- Últimas compras"
+					},
+					"response": []
+				},
+				{
+					"name": "Histórico de Compras",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/freteiro/pontos/historico?page=0&size=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "freteiro", "pontos", "historico"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "cidade",
+									"value": "Pelotas",
+									"description": "Filtrar por cidade (opcional)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Lista o histórico completo de compras de pontos:\n- Transaction ID\n- Quantidade de pontos\n- Valor pago\n- Status do pagamento\n- Posição antes/depois\n- Data de compra e expiração"
+					},
+					"response": []
+				}
+			],
+			"description": "**Sistema de Pontos Extras para Ranking**\n\nFreteiros com plano MASTER podem comprar pontos extras para melhorar sua posição no ranking de cada cidade.\n\n**Como funciona:**\n1. Simule a compra para ver sua posição estimada\n2. Compre os pontos (mín: 10, máx: 500)\n3. Pague via PIX ou cartão\n4. Pontos válidos por 30 dias\n5. Sua posição no ranking melhora automaticamente\n\n**Valores:**\n- Base: R$ 0,50/ponto\n- Com desconto: até R$ 0,30/ponto (40% off em 500 pontos)"
+		},
+		{
+			"name": "9. Admin 👨‍💼",
+			"item": [
+				{
+					"name": "Listar Todos Freteiros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"description": "Token JWT do admin"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/freteiros?page=0&size=20",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "freteiros"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Lista todos os freteiros cadastrados (apenas admin)"
+					},
+					"response": []
+				},
+				{
+					"name": "Verificar Freteiro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/freteiros/1/verificar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "freteiros", "1", "verificar"]
+						},
+						"description": "Marca um freteiro como verificado"
+					},
+					"response": []
+				},
+				{
+					"name": "Desverificar Freteiro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/freteiros/1/desverificar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "freteiros", "1", "desverificar"]
+						},
+						"description": "Remove o status de verificado"
+					},
+					"response": []
+				},
+				{
+					"name": "Ativar Freteiro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/freteiros/1/ativar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "freteiros", "1", "ativar"]
+						},
+						"description": "Ativa um freteiro desativado"
+					},
+					"response": []
+				},
+				{
+					"name": "Desativar Freteiro",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/freteiros/1/desativar",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "freteiros", "1", "desativar"]
+						},
+						"description": "Desativa um freteiro"
+					},
+					"response": []
+				},
+				{
+					"name": "Estatísticas Gerais",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/admin/estatisticas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "admin", "estatisticas"]
+						},
+						"description": "Retorna estatísticas gerais do sistema"
+					},
+					"response": []
+				}
+			],
+			"description": "**Endpoints Administrativos**\n\nApenas usuários com role ADMIN podem acessar."
+		}
+	]
+}
