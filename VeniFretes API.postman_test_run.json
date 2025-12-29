@@ -1,0 +1,792 @@
+{
+	"id": "cb43cd52-4fda-410d-ade9-d7b5b94b0183",
+	"name": "VeniFretes API",
+	"timestamp": "2025-12-28T19:05:21.062Z",
+	"collection_id": "30504852-989645a7-3e9e-401a-bb24-772327b44516",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-12-28T19:05:11.228Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "c6295e09-6a98-4801-abe0-ea9f403462f7",
+			"name": "Registrar Freteiro",
+			"url": "http://localhost:8080/api/auth/register",
+			"time": 367,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				367
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2a974a6b-7c66-411a-80bf-38b717039dd8",
+			"name": "Login",
+			"url": "http://localhost:8080/api/auth/login",
+			"time": 619,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				619
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a991657d-9f8d-4927-a29e-73d4cad59442",
+			"name": "Me (Usuário Logado)",
+			"url": "http://localhost:8080/api/auth/me",
+			"time": 311,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				311
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7d5e18b8-a5bd-4dee-9fe5-23a3cbbc3671",
+			"name": "Listar Freteiros (Ranking)",
+			"url": "http://localhost:8080/api/freteiros?page=0&size=10",
+			"time": 107,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				107
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0714c280-9297-4720-8c44-32281aa40957",
+			"name": "Listar por Cidade (Com Pontos)",
+			"url": "http://localhost:8080/api/freteiros?cidade=Pelotas&estado=RS&page=0&size=20",
+			"time": 83,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				83
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "289403ab-96b1-4e59-b446-dcf14b8fcd32",
+			"name": "Buscar Freteiro por ID",
+			"url": "http://localhost:8080/api/freteiros/1",
+			"time": 121,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				121
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e77edc67-5109-41d8-bfef-eeac29e09e55",
+			"name": "Buscar por Slug",
+			"url": "http://localhost:8080/api/freteiros/slug/joao-silva",
+			"time": 143,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				143
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "faa43431-c4e5-4e81-aec2-398ca8f21909",
+			"name": "Listar Avaliações do Freteiro",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes?page=0&size=10",
+			"time": 157,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				157
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f60f41b8-da1f-412f-a97b-c57dc30e2755",
+			"name": "Criar Avaliação",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes",
+			"time": 14,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c106877d-9240-48ea-aa75-2529da548a78",
+			"name": "Estatísticas de Avaliações",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes/stats",
+			"time": 230,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				230
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "95466214-e184-4eba-85bc-86c0472136d3",
+			"name": "Registrar Visualização",
+			"url": "http://localhost:8080/api/tracking",
+			"time": 167,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				167
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ba746fbd-281f-424c-b762-5e384010a128",
+			"name": "Registrar Clique WhatsApp",
+			"url": "http://localhost:8080/api/tracking",
+			"time": 141,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				141
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "dd8dd926-84fe-4002-b4bb-f169e0bd3eee",
+			"name": "Registrar Clique Telefone",
+			"url": "http://localhost:8080/api/tracking",
+			"time": 140,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				140
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "00e849ca-9dcd-424e-ac68-3dbdba137e32",
+			"name": "Registrar Clique Card",
+			"url": "http://localhost:8080/api/tracking",
+			"time": 139,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ded986df-dd0d-4b8f-8b5c-6c6a288072d9",
+			"name": "Listar Avaliações do Freteiro",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes?page=0&size=10",
+			"time": 139,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "591841dd-ceac-4230-a3d7-445f221b5ff7",
+			"name": "Criar Avaliação",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes",
+			"time": 430,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				430
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a03134b4-dbb4-4b0c-ac69-7f3fbe1c9c72",
+			"name": "Estatísticas de Avaliações",
+			"url": "http://localhost:8080/api/freteiros/1/avaliacoes/stats",
+			"time": 204,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				204
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1d962388-8133-40b9-97a7-37f3c7f6555c",
+			"name": "Meu Perfil",
+			"url": "http://localhost:8080/api/freteiro/perfil",
+			"time": 242,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				242
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c24d25c4-4672-477d-916a-163fc2d62d76",
+			"name": "Atualizar Perfil",
+			"url": "http://localhost:8080/api/freteiro/perfil",
+			"time": 143,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				143
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "95d52d0a-a77b-4670-b695-90fbb84204ff",
+			"name": "Dashboard (Métricas)",
+			"url": "http://localhost:8080/api/freteiro/dashboard",
+			"time": 411,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				411
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e05f2811-e2f6-4a8a-8094-c96f49d671fa",
+			"name": "Listar Planos",
+			"url": "http://localhost:8080/api/planos",
+			"time": 81,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				81
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1f1bc071-dffd-47df-a253-1743a4d2373d",
+			"name": "Buscar Plano por Tipo",
+			"url": "http://localhost:8080/api/planos/MASTER",
+			"time": 6,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				6
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "c69df46e-fcd5-4e93-b098-97b8910d11d4",
+			"name": "Health Check",
+			"url": "http://localhost:8080/actuator/health",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				43
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0b0ade9a-8af5-40a9-8e0e-0335ffdb3c5d",
+			"name": "Info",
+			"url": "http://localhost:8080/actuator/info",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b443f9a7-6e81-4449-805a-955142d7912f",
+			"name": "Metrics",
+			"url": "http://localhost:8080/actuator/metrics",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "41adf1ae-7ab1-4410-9bb5-c70e8750a664",
+			"name": "Simular Compra de Pontos",
+			"url": "http://localhost:8080/api/freteiro/pontos/simular?cidade=Pelotas&pontos=100",
+			"time": 394,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				394
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2a33dbb3-2048-42ba-9996-ed1e0a8103dd",
+			"name": "Comprar Pontos",
+			"url": "http://localhost:8080/api/freteiro/pontos/comprar",
+			"time": 378,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				378
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "65f16273-6020-4984-9f21-5665256c1f4a",
+			"name": "Consultar Status dos Pontos",
+			"url": "http://localhost:8080/api/freteiro/pontos/status?cidade=Pelotas",
+			"time": 356,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				356
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f074a900-c07d-47b4-bee8-d3d74f411d8b",
+			"name": "Histórico de Compras",
+			"url": "http://localhost:8080/api/freteiro/pontos/historico?page=0&size=20",
+			"time": 307,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				307
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "01e780d9-4d89-4962-8261-efb0f77ddb47",
+			"name": "Listar Todos Freteiros",
+			"url": "http://localhost:8080/api/admin/freteiros?page=0&size=20",
+			"time": 139,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "121042d3-6453-4511-bb5c-bd000cdb6318",
+			"name": "Verificar Freteiro",
+			"url": "http://localhost:8080/api/admin/freteiros/1/verificar",
+			"time": 140,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				140
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ee604346-86ef-419b-ae8d-cbc3d27c5565",
+			"name": "Desverificar Freteiro",
+			"url": "http://localhost:8080/api/admin/freteiros/1/desverificar",
+			"time": 139,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2aa8a2b0-1a57-442d-8cc2-a9e2a16f1be1",
+			"name": "Ativar Freteiro",
+			"url": "http://localhost:8080/api/admin/freteiros/1/ativar",
+			"time": 139,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0245c9cd-55bc-4574-ad7c-54b105fa0045",
+			"name": "Desativar Freteiro",
+			"url": "http://localhost:8080/api/admin/freteiros/1/desativar",
+			"time": 137,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				137
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "bcae202e-d94b-4b15-8656-48a0b9b4085e",
+			"name": "Estatísticas Gerais",
+			"url": "http://localhost:8080/api/admin/estatisticas",
+			"time": 139,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				139
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 6721,
+	"collection": {
+		"requests": [
+			{
+				"id": "c6295e09-6a98-4801-abe0-ea9f403462f7",
+				"method": "POST"
+			},
+			{
+				"id": "2a974a6b-7c66-411a-80bf-38b717039dd8",
+				"method": "POST"
+			},
+			{
+				"id": "a991657d-9f8d-4927-a29e-73d4cad59442",
+				"method": "GET"
+			},
+			{
+				"id": "7d5e18b8-a5bd-4dee-9fe5-23a3cbbc3671",
+				"method": "GET"
+			},
+			{
+				"id": "0714c280-9297-4720-8c44-32281aa40957",
+				"method": "GET"
+			},
+			{
+				"id": "289403ab-96b1-4e59-b446-dcf14b8fcd32",
+				"method": "GET"
+			},
+			{
+				"id": "e77edc67-5109-41d8-bfef-eeac29e09e55",
+				"method": "GET"
+			},
+			{
+				"id": "faa43431-c4e5-4e81-aec2-398ca8f21909",
+				"method": "GET"
+			},
+			{
+				"id": "f60f41b8-da1f-412f-a97b-c57dc30e2755",
+				"method": "POST"
+			},
+			{
+				"id": "c106877d-9240-48ea-aa75-2529da548a78",
+				"method": "GET"
+			},
+			{
+				"id": "95466214-e184-4eba-85bc-86c0472136d3",
+				"method": "POST"
+			},
+			{
+				"id": "ba746fbd-281f-424c-b762-5e384010a128",
+				"method": "POST"
+			},
+			{
+				"id": "dd8dd926-84fe-4002-b4bb-f169e0bd3eee",
+				"method": "POST"
+			},
+			{
+				"id": "00e849ca-9dcd-424e-ac68-3dbdba137e32",
+				"method": "POST"
+			},
+			{
+				"id": "ded986df-dd0d-4b8f-8b5c-6c6a288072d9",
+				"method": "GET"
+			},
+			{
+				"id": "591841dd-ceac-4230-a3d7-445f221b5ff7",
+				"method": "POST"
+			},
+			{
+				"id": "a03134b4-dbb4-4b0c-ac69-7f3fbe1c9c72",
+				"method": "GET"
+			},
+			{
+				"id": "1d962388-8133-40b9-97a7-37f3c7f6555c",
+				"method": "GET"
+			},
+			{
+				"id": "c24d25c4-4672-477d-916a-163fc2d62d76",
+				"method": "PUT"
+			},
+			{
+				"id": "95d52d0a-a77b-4670-b695-90fbb84204ff",
+				"method": "GET"
+			},
+			{
+				"id": "e05f2811-e2f6-4a8a-8094-c96f49d671fa",
+				"method": "GET"
+			},
+			{
+				"id": "1f1bc071-dffd-47df-a253-1743a4d2373d",
+				"method": "GET"
+			},
+			{
+				"id": "c69df46e-fcd5-4e93-b098-97b8910d11d4",
+				"method": "GET"
+			},
+			{
+				"id": "0b0ade9a-8af5-40a9-8e0e-0335ffdb3c5d",
+				"method": "GET"
+			},
+			{
+				"id": "b443f9a7-6e81-4449-805a-955142d7912f",
+				"method": "GET"
+			},
+			{
+				"id": "41adf1ae-7ab1-4410-9bb5-c70e8750a664",
+				"method": "GET"
+			},
+			{
+				"id": "2a33dbb3-2048-42ba-9996-ed1e0a8103dd",
+				"method": "POST"
+			},
+			{
+				"id": "65f16273-6020-4984-9f21-5665256c1f4a",
+				"method": "GET"
+			},
+			{
+				"id": "f074a900-c07d-47b4-bee8-d3d74f411d8b",
+				"method": "GET"
+			},
+			{
+				"id": "01e780d9-4d89-4962-8261-efb0f77ddb47",
+				"method": "GET"
+			},
+			{
+				"id": "121042d3-6453-4511-bb5c-bd000cdb6318",
+				"method": "PUT"
+			},
+			{
+				"id": "ee604346-86ef-419b-ae8d-cbc3d27c5565",
+				"method": "PUT"
+			},
+			{
+				"id": "2aa8a2b0-1a57-442d-8cc2-a9e2a16f1be1",
+				"method": "PUT"
+			},
+			{
+				"id": "0245c9cd-55bc-4574-ad7c-54b105fa0045",
+				"method": "PUT"
+			},
+			{
+				"id": "bcae202e-d94b-4b15-8656-48a0b9b4085e",
+				"method": "GET"
+			}
+		]
+	}
+}

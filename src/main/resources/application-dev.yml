@@ -26,3 +26,7 @@ logging:
     org.springframework.security: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# CORS - Liberado para desenvolvimento (Postman, frontend local, etc)
+cors:
+  allowed-origins: "*"

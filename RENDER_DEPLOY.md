@@ -32,8 +32,14 @@ JWT_SECRET=<gere-uma-chave-secreta-forte-minimo-64-caracteres>
 ```
 
 #### CORS
+Para **desenvolvimento/testes** (Postman, qualquer origem):
 ```
-CORS_ALLOWED_ORIGINS=https://seu-frontend.com,http://localhost:3000
+CORS_ALLOWED_ORIGINS=*
+```
+
+Para **produção** (origens específicas):
+```
+CORS_ALLOWED_ORIGINS=https://seu-frontend.com,https://outro-dominio.com
 ```
 
 #### PagBank (Opcional - para produção)

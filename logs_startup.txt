@@ -1,0 +1,200 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.venifretes:veni-fretes-backend >-----------------
+[INFO] Building VeniFretes Backend 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.1:run (default-cli) > test-compile @ veni-fretes-backend >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ veni-fretes-backend ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 9 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ veni-fretes-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ veni-fretes-backend ---
+[INFO] skip non existing resourceDirectory C:\Users\Arthur\Documents\GitHub\veni-fretes-backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ veni-fretes-backend ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.1:run (default-cli) < test-compile @ veni-fretes-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.1:run (default-cli) @ veni-fretes-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2025-12-28T16:33:43.770-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.venifretes.VeniFretesApplication     : Starting VeniFretesApplication using Java 21.0.9 with PID 4552 (C:\Users\Arthur\Documents\GitHub\veni-fretes-backend\target\classes started by Arthur in C:\Users\Arthur\Documents\GitHub\veni-fretes-backend)
+2025-12-28T16:33:43.771-03:00 DEBUG 4552 --- [venifretes-backend] [  restartedMain] com.venifretes.VeniFretesApplication     : Running with Spring Boot v3.2.1, Spring v6.1.2
+2025-12-28T16:33:43.772-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.venifretes.VeniFretesApplication     : The following 1 profile is active: "dev"
+2025-12-28T16:33:43.807-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-28T16:33:43.807-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-28T16:33:44.729-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-28T16:33:44.813-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 11 JPA repository interfaces.
+2025-12-28T16:33:45.593-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-28T16:33:45.603-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-28T16:33:45.604-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2025-12-28T16:33:45.647-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-28T16:33:45.649-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1840 ms
+2025-12-28T16:33:45.925-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-28T16:33:46.528-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7b48bb2b
+2025-12-28T16:33:46.529-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-28T16:33:46.669-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.22.3 by Redgate
+2025-12-28T16:33:46.669-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2025-12-28T16:33:46.669-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.c.internal.license.VersionPrinter    : 
+2025-12-28T16:33:46.750-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://ep-small-night-achuun0e-pooler.sa-east-1.aws.neon.tech:5432/neondb (PostgreSQL 17.7)
+2025-12-28T16:33:46.997-03:00  WARN 4552 --- [venifretes-backend] [  restartedMain] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 17.7 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 15.
+2025-12-28T16:33:47.198-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 9 migrations (execution time 00:00.159s)
+2025-12-28T16:33:47.581-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 9
+2025-12-28T16:33:47.616-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2025-12-28T16:33:47.917-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-28T16:33:47.963-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2025-12-28T16:33:47.991-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-28T16:33:48.123-03:00  WARN 4552 --- [venifretes-backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-28T16:33:48.339-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-28T16:33:49.406-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-28T16:33:49.680-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-28T16:33:50.039-03:00 DEBUG 4552 --- [venifretes-backend] [  restartedMain] c.v.security.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2025-12-28T16:33:50.119-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-28T16:33:51.491-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-12-28T16:33:51.579-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@55efe26, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@257b3ca2, org.springframework.security.web.context.SecurityContextHolderFilter@5728e941, org.springframework.security.web.header.HeaderWriterFilter@58b355b6, org.springframework.web.filter.CorsFilter@7dc830cf, org.springframework.security.web.authentication.logout.LogoutFilter@2f9c8ebe, com.venifretes.security.JwtAuthenticationFilter@67e91905, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54abd938, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a71da27, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c04dd7b, org.springframework.security.web.session.SessionManagementFilter@1bdcd008, org.springframework.security.web.access.ExceptionTranslationFilter@f7a3da2, org.springframework.security.web.access.intercept.AuthorizationFilter@6f5e19af]
+2025-12-28T16:33:52.291-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-12-28T16:33:52.363-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-12-28T16:33:52.373-03:00  INFO 4552 --- [venifretes-backend] [  restartedMain] com.venifretes.VeniFretesApplication     : Started VeniFretesApplication in 8.937 seconds (process running for 9.34)
+2025-12-28T16:36:37.196-03:00  INFO 4552 --- [venifretes-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-28T16:36:37.196-03:00  INFO 4552 --- [venifretes-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-12-28T16:36:37.197-03:00  INFO 4552 --- [venifretes-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-12-28T16:36:37.214-03:00 DEBUG 4552 --- [venifretes-backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/freteiros?page=0&size=10
+2025-12-28T16:36:37.223-03:00 DEBUG 4552 --- [venifretes-backend] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-12-28T16:36:37.228-03:00 DEBUG 4552 --- [venifretes-backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/freteiros?page=0&size=10
+2025-12-28T16:36:37.326-03:00 DEBUG 4552 --- [venifretes-backend] [nio-8080-exec-1] org.hibernate.SQL                        : 
+    WITH ranked_freteiros AS (         SELECT
+        DISTINCT             f.usuario_id,             CASE                 
+            WHEN a.plano_id = 'MASTER' 
+                THEN 4                 
+            WHEN a.plano_id = 'PREMIUM' 
+                THEN 3                 
+            WHEN a.plano_id = 'PADRAO' 
+                THEN 2                 
+            ELSE 1             
+        END as plano_ordem,             COALESCE(pr.pontos_ativos, 0) as pontos         
+    FROM
+        freteiros f         
+    JOIN
+        usuarios u 
+            ON f.usuario_id = u.pessoa_id         
+    LEFT JOIN
+        assinaturas a 
+            ON f.usuario_id = a.freteiro_id             
+            AND (a.status = 'ATIVA' 
+            OR a.status = 'EM_PERIODO_TESTE')         
+    LEFT JOIN
+        pontos_ranking pr 
+            ON pr.freteiro_id = f.usuario_id             
+            AND (CAST(? AS VARCHAR) IS NULL 
+            OR LOWER(pr.cidade) = LOWER(CAST(? AS VARCHAR)))             
+            AND pr.ativo = true             
+            AND (pr.expira_em IS NULL 
+            OR pr.expira_em > CURRENT_TIMESTAMP)         
+    WHERE
+        u.ativo = true             
+        AND (CAST(? AS VARCHAR) IS NULL 
+        OR LOWER(f.cidade) = LOWER(CAST(? AS VARCHAR)))             
+        AND (CAST(? AS VARCHAR) IS NULL 
+        OR UPPER(f.estado) = UPPER(CAST(? AS VARCHAR)))             
+        AND (? IS NULL 
+        OR f.avaliacao_media >= ?)     )     SELECT
+        f.* 
+    FROM
+        freteiros f     
+    JOIN
+        ranked_freteiros rf 
+            ON f.usuario_id = rf.usuario_id     
+    ORDER BY
+        rf.plano_ordem DESC,
+        rf.pontos DESC,
+        f.porcentagem_completude DESC,
+        f.avaliacao_media DESC,
+        f.usuario_id ASC ,
+        f.id asc 
+    fetch
+        first ? rows only
+Hibernate: 
+    WITH ranked_freteiros AS (         SELECT
+        DISTINCT             f.usuario_id,             CASE                 
+            WHEN a.plano_id = 'MASTER' 
+                THEN 4                 
+            WHEN a.plano_id = 'PREMIUM' 
+                THEN 3                 
+            WHEN a.plano_id = 'PADRAO' 
+                THEN 2                 
+            ELSE 1             
+        END as plano_ordem,             COALESCE(pr.pontos_ativos, 0) as pontos         
+    FROM
+        freteiros f         
+    JOIN
+        usuarios u 
+            ON f.usuario_id = u.pessoa_id         
+    LEFT JOIN
+        assinaturas a 
+            ON f.usuario_id = a.freteiro_id             
+            AND (a.status = 'ATIVA' 
+            OR a.status = 'EM_PERIODO_TESTE')         
+    LEFT JOIN
+        pontos_ranking pr 
+            ON pr.freteiro_id = f.usuario_id             
+            AND (CAST(? AS VARCHAR) IS NULL 
+            OR LOWER(pr.cidade) = LOWER(CAST(? AS VARCHAR)))             
+            AND pr.ativo = true             
+            AND (pr.expira_em IS NULL 
+            OR pr.expira_em > CURRENT_TIMESTAMP)         
+    WHERE
+        u.ativo = true             
+        AND (CAST(? AS VARCHAR) IS NULL 
+        OR LOWER(f.cidade) = LOWER(CAST(? AS VARCHAR)))             
+        AND (CAST(? AS VARCHAR) IS NULL 
+        OR UPPER(f.estado) = UPPER(CAST(? AS VARCHAR)))             
+        AND (? IS NULL 
+        OR f.avaliacao_media >= ?)     )     SELECT
+        f.* 
+    FROM
+        freteiros f     
+    JOIN
+        ranked_freteiros rf 
+            ON f.usuario_id = rf.usuario_id     
+    ORDER BY
+        rf.plano_ordem DESC,
+        rf.pontos DESC,
+        f.porcentagem_completude DESC,
+        f.avaliacao_media DESC,
+        f.usuario_id ASC ,
+        f.id asc 
+    fetch
+        first ? rows only
+2025-12-28T16:36:37.365-03:00  WARN 4552 --- [venifretes-backend] [nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 42703
+2025-12-28T16:36:37.366-03:00 ERROR 4552 --- [venifretes-backend] [nio-8080-exec-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: column f.id does not exist
+  Posição: 1377
+2025-12-28T16:36:37.458-03:00  WARN 4552 --- [venifretes-backend] [nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.dao.InvalidDataAccessResourceUsageException: JDBC exception executing SQL [    WITH ranked_freteiros AS (<EOL>        SELECT DISTINCT<EOL>            f.usuario_id,<EOL>            CASE<EOL>                WHEN a.plano_id = 'MASTER' THEN 4<EOL>                WHEN a.plano_id = 'PREMIUM' THEN 3<EOL>                WHEN a.plano_id = 'PADRAO' THEN 2<EOL>                ELSE 1<EOL>            END as plano_ordem,<EOL>            COALESCE(pr.pontos_ativos, 0) as pontos<EOL>        FROM freteiros f<EOL>        JOIN usuarios u ON f.usuario_id = u.pessoa_id<EOL>        LEFT JOIN assinaturas a ON f.usuario_id = a.freteiro_id<EOL>            AND (a.status = 'ATIVA' OR a.status = 'EM_PERIODO_TESTE')<EOL>        LEFT JOIN pontos_ranking pr ON pr.freteiro_id = f.usuario_id<EOL>            AND (CAST(? AS VARCHAR) IS NULL OR LOWER(pr.cidade) = LOWER(CAST(? AS VARCHAR)))<EOL>            AND pr.ativo = true<EOL>            AND (pr.expira_em IS NULL OR pr.expira_em > CURRENT_TIMESTAMP)<EOL>        WHERE u.ativo = true<EOL>            AND (CAST(? AS VARCHAR) IS NULL OR LOWER(f.cidade) = LOWER(CAST(? AS VARCHAR)))<EOL>            AND (CAST(? AS VARCHAR) IS NULL OR UPPER(f.estado) = UPPER(CAST(? AS VARCHAR)))<EOL>            AND (? IS NULL OR f.avaliacao_media >= ?)<EOL>    )<EOL>    SELECT f.* FROM freteiros f<EOL>    JOIN ranked_freteiros rf ON f.usuario_id = rf.usuario_id<EOL>    ORDER BY<EOL>        rf.plano_ordem DESC,<EOL>        rf.pontos DESC,<EOL>        f.porcentagem_completude DESC,<EOL>        f.avaliacao_media DESC,<EOL>        f.usuario_id ASC<EOL>, f.id asc fetch first ? rows only] [ERROR: column f.id does not exist<EOL>  Posição: 1377] [n/a]; SQL [n/a]]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:34 min
+[INFO] Finished at: 2025-12-28T16:38:15-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.1:run (default-cli) on project veni-fretes-backend: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
