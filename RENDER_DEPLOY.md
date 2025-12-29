@@ -27,8 +27,16 @@ DATABASE_URL=jdbc:postgresql://user:pass@ep-cool-name-123456.us-east-1.aws.neon.
 ```
 
 #### Segurança
+**CRÍTICO**: O JWT_SECRET deve ter **no mínimo 64 caracteres** (512 bits). Caso contrário, a aplicação falhará ao gerar tokens.
+
+Gere um secret seguro com:
+```bash
+openssl rand -base64 64
 ```
-JWT_SECRET=<gere-uma-chave-secreta-forte-minimo-64-caracteres>
+
+Depois adicione no Render:
+```
+JWT_SECRET=<cole-aqui-o-resultado-do-comando-acima>
 ```
 
 #### CORS
@@ -105,7 +113,12 @@ https://seu-app.onrender.com/swagger-ui.html
 ### Aplicação não inicia
 - Verifique os logs no dashboard do Render
 - Certifique-se que todas as variáveis de ambiente obrigatórias estão configuradas
-- Verifique se o JWT_SECRET tem tamanho suficiente
+- **IMPORTANTE**: Verifique se o JWT_SECRET tem no mínimo 64 caracteres (use `openssl rand -base64 64`)
+
+### Erro 500 ao fazer login
+- **Causa provável**: JWT_SECRET muito curto ou inválido
+- **Solução**: Gere um novo JWT_SECRET com `openssl rand -base64 64` e atualize no Render
+- Verifique os logs para confirmar o erro: `WeakKeyException` indica chave JWT muito curta
 
 ### Port binding error
 - O Render define a porta via variável PORT
