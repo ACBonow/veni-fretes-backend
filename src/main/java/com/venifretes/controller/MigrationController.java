@@ -67,4 +67,46 @@ public class MigrationController {
             "message", "Migration system is ready. Use /freteiros/test to test migration."
         ));
     }
+
+    @PostMapping("/freteiros/batch")
+    @Operation(summary = "Migrate multiple freteiros from old database")
+    public ResponseEntity<?> migrateBatch(@RequestBody List<FreteiroMigrationService.OldFreteiroData> freteiros) {
+        try {
+            List<Map<String, Object>> results = new ArrayList<>();
+            int success = 0;
+            int failed = 0;
+
+            for (FreteiroMigrationService.OldFreteiroData data : freteiros) {
+                try {
+                    var result = migrationService.migrateFreteiro(data);
+                    results.add(Map.of(
+                        "nome", result.getNome(),
+                        "id", result.getId(),
+                        "status", "success"
+                    ));
+                    success++;
+                } catch (Exception e) {
+                    results.add(Map.of(
+                        "nome", data.nome,
+                        "status", "failed",
+                        "error", e.getMessage()
+                    ));
+                    failed++;
+                }
+            }
+
+            return ResponseEntity.ok(Map.of(
+                "total", freteiros.size(),
+                "success", success,
+                "failed", failed,
+                "results", results
+            ));
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "success", false,
+                "error", e.getMessage()
+            ));
+        }
+    }
 }
