@@ -6,15 +6,13 @@ VALUES ('Administrador', '53000000000', 'admin@venifretes.com', CURRENT_TIMESTAM
 
 -- Insert into usuarios table (with ADMIN role)
 -- Password: admin123 (BCrypt hash)
-INSERT INTO usuarios (usuario_id, password, role, email_verificado, ativo, created_at, updated_at)
+INSERT INTO usuarios (pessoa_id, password, role, email_verificado, ativo)
 VALUES (
     (SELECT id FROM pessoas WHERE email = 'admin@venifretes.com'),
     '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhCu', -- BCrypt hash for "admin123"
     'ADMIN',
     true,
-    true,
-    CURRENT_TIMESTAMP,
-    CURRENT_TIMESTAMP
+    true
 );
 
 -- Note: Default credentials are:
