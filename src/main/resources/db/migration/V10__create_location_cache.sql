@@ -2,7 +2,7 @@
 
 -- Create estados (Brazilian states) cache table
 CREATE TABLE estados (
-    id SMALLSERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     sigla VARCHAR(2) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
     codigo_ibge INTEGER NOT NULL UNIQUE,
