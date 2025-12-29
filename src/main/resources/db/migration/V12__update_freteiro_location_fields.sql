@@ -1,12 +1,32 @@
 -- V12: Update freteiro table to add foreign key reference to cidade
 
 -- Add foreign key reference to cidade (nullable for backward compatibility during migration)
-ALTER TABLE freteiros ADD COLUMN cidade_id INTEGER;
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns
+                   WHERE table_name = 'freteiros' AND column_name = 'cidade_id') THEN
+        ALTER TABLE freteiros ADD COLUMN cidade_id INTEGER;
+    END IF;
+END $$;
 
-ALTER TABLE freteiros ADD CONSTRAINT fk_freteiro_cidade
-    FOREIGN KEY (cidade_id) REFERENCES cidades(id);
+-- Add foreign key constraint if not exists
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.table_constraints
+                   WHERE constraint_name = 'fk_freteiro_cidade') THEN
+        ALTER TABLE freteiros ADD CONSTRAINT fk_freteiro_cidade
+            FOREIGN KEY (cidade_id) REFERENCES cidades(id);
+    END IF;
+END $$;
 
-CREATE INDEX idx_freteiros_cidade_id ON freteiros(cidade_id);
+-- Create index if not exists
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_indexes
+                   WHERE indexname = 'idx_freteiros_cidade_id') THEN
+        CREATE INDEX idx_freteiros_cidade_id ON freteiros(cidade_id);
+    END IF;
+END $$;
 
 -- Keep old cidade/estado columns for now (migration safety and rollback support)
 -- They will be deprecated after successful migration
