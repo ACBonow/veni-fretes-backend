@@ -45,8 +45,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/tracking").permitAll()
                 .requestMatchers("/api/webhook/**").permitAll()
 
-                // Swagger
-                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
+                // Swagger and API docs
+                .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
 
                 // Freteiro endpoints
