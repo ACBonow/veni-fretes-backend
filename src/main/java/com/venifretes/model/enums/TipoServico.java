@@ -8,5 +8,7 @@ public enum TipoServico {
     FRETES_ESTADUAIS,
     FRETES_INTERESTADUAIS,
     CARRETO,
-    TRANSPORTE_MOVEIS
+    TRANSPORTE_MOVEIS,
+    EMPACOTAMENTO,           // Adicionado: V13 - do campo "servicos" do banco antigo
+    TRANSPORTE_ANIMAIS       // Adicionado: V13 - do campo "servicos" do banco antigo
 }

@@ -34,11 +34,20 @@ public class Freteiro extends Usuario {
     @Column(nullable = false, unique = true, length = 100)
     private String slug;
 
-    @Column(nullable = false, length = 100)
+    // DEPRECATED: Use cidadeRef instead (kept for backward compatibility during migration)
+    @Deprecated
+    @Column(nullable = true, length = 100)
     private String cidade;
 
-    @Column(nullable = false, length = 2)
+    // DEPRECATED: Use cidadeRef.estado instead (kept for backward compatibility during migration)
+    @Deprecated
+    @Column(nullable = true, length = 2)
     private String estado;
+
+    // NEW: Normalized city reference (V12)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cidade_id")
+    private Cidade cidadeRef;
 
     @Type(JsonType.class)
     @Column(name = "areas_atendidas", columnDefinition = "jsonb")
@@ -95,13 +104,35 @@ public class Freteiro extends Usuario {
     @Column(name = "data_verificacao")
     private LocalDateTime dataVerificacao;
 
+    // NEW: Working hours with multiple shifts per day (V11)
+    @OneToMany(mappedBy = "freteiro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HorarioAtendimento> horariosAtendimento = new ArrayList<>();
+
     @OneToMany(mappedBy = "freteiro", cascade = CascadeType.ALL)
     private List<Assinatura> assinaturas = new ArrayList<>();
 
     @OneToMany(mappedBy = "freteiro", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 
-    // Helper method para assinatura ativa
+    // Helper methods
+
+    /**
+     * Get city name (prefers normalized cidadeRef, falls back to deprecated cidade field)
+     */
+    public String getCidadeNome() {
+        return cidadeRef != null ? cidadeRef.getNome() : cidade;
+    }
+
+    /**
+     * Get state code (prefers normalized cidadeRef, falls back to deprecated estado field)
+     */
+    public String getEstadoSigla() {
+        return cidadeRef != null ? cidadeRef.getEstado().getSigla() : estado;
+    }
+
+    /**
+     * Get active subscription
+     */
     public Assinatura getAssinaturaAtiva() {
         return assinaturas.stream()
             .filter(a -> a.getStatus() == StatusAssinatura.ATIVA ||
