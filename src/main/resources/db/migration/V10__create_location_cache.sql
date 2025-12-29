@@ -14,7 +14,7 @@ CREATE INDEX idx_estados_sigla ON estados(sigla);
 -- Create cidades (Brazilian cities) cache table
 CREATE TABLE cidades (
     id SERIAL PRIMARY KEY,
-    estado_id SMALLINT NOT NULL REFERENCES estados(id),
+    estado_id INTEGER NOT NULL REFERENCES estados(id),
     nome VARCHAR(100) NOT NULL,
     codigo_ibge INTEGER NOT NULL UNIQUE,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
