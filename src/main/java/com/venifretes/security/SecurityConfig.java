@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/freteiros/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/freteiros/*/avaliacoes").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/planos/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/tracking").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/tracking/**").permitAll()
                 .requestMatchers("/api/webhook/**").permitAll()
 
                 // Swagger and API docs
