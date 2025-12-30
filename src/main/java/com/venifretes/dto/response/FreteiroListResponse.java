@@ -13,6 +13,7 @@ public class FreteiroListResponse {
     private Long id;
     private String nome;
     private String slug;
+    private String telefone;
     private String cidade;
     private String estado;
     private String fotoPerfil;

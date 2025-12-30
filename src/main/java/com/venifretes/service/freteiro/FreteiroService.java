@@ -67,6 +67,7 @@ public class FreteiroService {
             .id(freteiro.getId())
             .nome(freteiro.getNome())
             .slug(freteiro.getSlug())
+            .telefone(freteiro.getTelefone())
             .cidade(freteiro.getCidade())
             .estado(freteiro.getEstado())
             .fotoPerfil(freteiro.getFotoPerfil())
