@@ -1,5 +1,7 @@
 package com.venifretes.controller;
 
+import com.venifretes.dto.request.ClickTrackingRequest;
+import com.venifretes.dto.request.SimpleTrackingRequest;
 import com.venifretes.dto.request.TrackingRequest;
 import com.venifretes.service.tracking.TrackingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,6 +33,48 @@ public class TrackingController {
         trackingService.registrarEvento(
             request.getFreteiroId(),
             request.getTipo(),
+            ip,
+            userAgent,
+            request.getOrigem(),
+            request.getReferer()
+        );
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/view")
+    @Operation(summary = "Registrar visualização de perfil")
+    public ResponseEntity<Void> registrarVisualizacao(
+            @Valid @RequestBody SimpleTrackingRequest request,
+            HttpServletRequest httpRequest) {
+
+        String ip = getClientIp(httpRequest);
+        String userAgent = httpRequest.getHeader("User-Agent");
+
+        trackingService.registrarEvento(
+            request.getFreteiroId(),
+            com.venifretes.model.enums.TipoEvento.VISUALIZACAO_PERFIL,
+            ip,
+            userAgent,
+            request.getOrigem(),
+            request.getReferer()
+        );
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/click")
+    @Operation(summary = "Registrar clique em WhatsApp/telefone")
+    public ResponseEntity<Void> registrarClique(
+            @Valid @RequestBody ClickTrackingRequest request,
+            HttpServletRequest httpRequest) {
+
+        String ip = getClientIp(httpRequest);
+        String userAgent = httpRequest.getHeader("User-Agent");
+
+        trackingService.registrarEvento(
+            request.getFreteiroId(),
+            request.getTipo() != null ? request.getTipo() : com.venifretes.model.enums.TipoEvento.CLIQUE_WHATSAPP,
             ip,
             userAgent,
             request.getOrigem(),
