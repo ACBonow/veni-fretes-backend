@@ -83,9 +83,9 @@ public class FreteiroMigrationService {
                 .ativo(true)
                 .slug(slug)
                 .cidadeRef(cidade)
-                // Keep old fields for rollback safety
-                .cidade(cidade != null ? cidade.getNome() : old.cidade)
-                .estado(old.estado)
+                // Keep old fields for rollback safety (database has NOT NULL constraint)
+                .cidade(cidade != null ? cidade.getNome() : (old.cidade != null ? old.cidade : "Pelotas"))
+                .estado(cidade != null ? cidade.getEstado().getSigla() : (old.estado != null ? old.estado : "RS"))
                 .fotoPerfil(old.fotoPerfil)
                 .tiposVeiculo(tiposVeiculo)
                 .tiposServico(tiposServico)
