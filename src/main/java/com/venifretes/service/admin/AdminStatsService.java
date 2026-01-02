@@ -73,15 +73,19 @@ public class AdminStatsService {
         // Cliques por tipo
         long cliquesWhatsApp = eventoRepository.countByTipo(TipoEvento.CLIQUE_WHATSAPP);
         long cliquesTelefone = eventoRepository.countByTipo(TipoEvento.CLIQUE_TELEFONE);
+        long cliquesCard = eventoRepository.countByTipo(TipoEvento.CLIQUE_CARD);
+        long cliquesLinkExterno = eventoRepository.countByTipo(TipoEvento.CLIQUE_LINK_EXTERNO);
 
-        // Total de cliques (todos os tipos de clique)
+        // Total de cliques (soma de todos os tipos)
+        long totalCliques = cliquesWhatsApp + cliquesTelefone + cliquesCard + cliquesLinkExterno;
+
+        // Cliques dos últimos 30 dias
         List<TipoEvento> tiposClique = Arrays.asList(
                 TipoEvento.CLIQUE_WHATSAPP,
                 TipoEvento.CLIQUE_TELEFONE,
                 TipoEvento.CLIQUE_CARD,
                 TipoEvento.CLIQUE_LINK_EXTERNO
         );
-        long totalCliques = eventoRepository.countByTipoInAndCreatedAtAfter(tiposClique, LocalDateTime.MIN);
         long cliquesUltimos30Dias = eventoRepository.countByTipoInAndCreatedAtAfter(tiposClique, ultimos30Dias);
 
         // Taxa de conversão (cliques / visualizações)
