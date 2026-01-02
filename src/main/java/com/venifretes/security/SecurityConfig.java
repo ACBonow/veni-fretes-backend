@@ -50,10 +50,10 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/api-docs/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
 
-                // Freteiro endpoints
+                // Freteiro endpoints - apenas FRETEIRO
                 .requestMatchers("/api/freteiro/**").hasRole("FRETEIRO")
 
-                // Admin endpoints
+                // Admin endpoints - apenas ADMIN
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
                 // All other requests must be authenticated

@@ -1,5 +1,6 @@
 package com.venifretes.dto.response;
 
+import com.venifretes.model.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,4 +11,10 @@ public class AuthResponse {
     private String refreshToken;
     private String tokenType;
     private Long expiresIn;
+
+    // Informações do usuário
+    private Long userId;
+    private String email;
+    private String nome;
+    private Role role;
 }

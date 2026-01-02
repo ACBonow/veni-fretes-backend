@@ -76,6 +76,10 @@ public class AuthService {
             .refreshToken(refreshToken)
             .tokenType("Bearer")
             .expiresIn(tokenProvider.getJwtExpiration())
+            .userId(saved.getId())
+            .email(saved.getEmail())
+            .nome(saved.getNome())
+            .role(saved.getRole())
             .build();
     }
 
@@ -85,12 +89,12 @@ public class AuthService {
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
 
-        // Atualizar último login
-        usuarioRepository.findByEmail(request.getEmail())
-            .ifPresent(usuario -> {
-                usuario.setLastLoginAt(LocalDateTime.now());
-                usuarioRepository.save(usuario);
-            });
+        // Buscar usuário e atualizar último login
+        Usuario usuario = usuarioRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new BusinessException("Usuário não encontrado"));
+
+        usuario.setLastLoginAt(LocalDateTime.now());
+        usuarioRepository.save(usuario);
 
         String accessToken = tokenProvider.generateAccessToken(request.getEmail());
         String refreshToken = tokenProvider.generateRefreshToken(request.getEmail());
@@ -102,6 +106,10 @@ public class AuthService {
             .refreshToken(refreshToken)
             .tokenType("Bearer")
             .expiresIn(tokenProvider.getJwtExpiration())
+            .userId(usuario.getId())
+            .email(usuario.getEmail())
+            .nome(usuario.getNome())
+            .role(usuario.getRole())
             .build();
     }
 
