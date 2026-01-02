@@ -41,11 +41,11 @@ public interface AssinaturaRepository extends JpaRepository<Assinatura, Long> {
     // Admin statistics queries
     long countByStatus(StatusAssinatura status);
 
-    @Query("SELECT COALESCE(SUM(a.valorPago), 0) FROM Assinatura a WHERE a.status IN ('ATIVA', 'EM_PERIODO_TESTE')")
+    @Query("SELECT COALESCE(SUM(a.valorMensal), 0) FROM Assinatura a WHERE a.status IN ('ATIVA', 'EM_PERIODO_TESTE')")
     BigDecimal getTotalReceitaAssinaturas();
 
     @Query("""
-        SELECT COALESCE(SUM(a.valorPago), 0) FROM Assinatura a
+        SELECT COALESCE(SUM(a.valorMensal), 0) FROM Assinatura a
         WHERE a.status IN ('ATIVA', 'EM_PERIODO_TESTE')
         AND a.dataInicio >= :dataInicio
     """)
