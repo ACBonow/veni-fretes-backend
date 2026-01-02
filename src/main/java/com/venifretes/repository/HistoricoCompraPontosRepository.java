@@ -53,4 +53,11 @@ public interface HistoricoCompraPontosRepository extends JpaRepository<Historico
 
     @Query("SELECT h FROM HistoricoCompraPontos h WHERE h.status IN ('PENDENTE', 'PROCESSANDO') AND h.createdAt < :dataLimite")
     List<HistoricoCompraPontos> findPagamentosPendentesExpirados(@Param("dataLimite") LocalDateTime dataLimite);
+
+    // Admin statistics queries
+    @Query("SELECT COALESCE(SUM(h.valorTotal), 0) FROM HistoricoCompraPontos h WHERE h.status = 'APROVADO'")
+    BigDecimal getTotalReceitaPontos();
+
+    @Query("SELECT COALESCE(SUM(h.quantidadePontos), 0) FROM HistoricoCompraPontos h WHERE h.status = 'APROVADO'")
+    Integer getTotalPontosVendidos();
 }

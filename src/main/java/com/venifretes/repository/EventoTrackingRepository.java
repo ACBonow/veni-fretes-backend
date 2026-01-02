@@ -47,4 +47,12 @@ public interface EventoTrackingRepository extends JpaRepository<EventoTracking, 
         LocalDateTime dataInicio,
         List<TipoEvento> tipos
     );
+
+    // Admin statistics queries
+    long countByCreatedAtAfter(LocalDateTime dataInicio);
+    long countByTipoAndCreatedAtAfter(TipoEvento tipo, LocalDateTime dataInicio);
+    long countByTipoInAndCreatedAtAfter(List<TipoEvento> tipos, LocalDateTime dataInicio);
+
+    @Query("SELECT COUNT(e) FROM EventoTracking e WHERE e.tipo = :tipo")
+    long countByTipo(@Param("tipo") TipoEvento tipo);
 }
