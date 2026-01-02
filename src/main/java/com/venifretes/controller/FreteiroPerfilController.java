@@ -58,6 +58,10 @@ public class FreteiroPerfilController {
                 .avaliacaoMedia(freteiro.getAvaliacaoMedia())
                 .totalAvaliacoes(freteiro.getTotalAvaliacoes())
                 .verificado(freteiro.getVerificado())
+                .totalVisualizacoes(freteiro.getTotalVisualizacoes())
+                .totalCliques(freteiro.getTotalCliques())
+                .cliquesWhatsApp(freteiro.getCliquesWhatsApp())
+                .cliquesTelefone(freteiro.getCliquesTelefone())
                 .build();
 
         return ResponseEntity.ok(response);
@@ -122,6 +126,10 @@ public class FreteiroPerfilController {
                 .avaliacaoMedia(updated.getAvaliacaoMedia())
                 .totalAvaliacoes(updated.getTotalAvaliacoes())
                 .verificado(updated.getVerificado())
+                .totalVisualizacoes(updated.getTotalVisualizacoes())
+                .totalCliques(updated.getTotalCliques())
+                .cliquesWhatsApp(updated.getCliquesWhatsApp())
+                .cliquesTelefone(updated.getCliquesTelefone())
                 .build();
 
         return ResponseEntity.ok(response);

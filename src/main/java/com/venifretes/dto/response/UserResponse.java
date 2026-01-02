@@ -40,4 +40,10 @@ public class UserResponse {
     private BigDecimal avaliacaoMedia;
     private Integer totalAvaliacoes;
     private Boolean verificado;
+
+    // Métricas de tracking
+    private Long totalVisualizacoes;
+    private Long totalCliques;
+    private Long cliquesWhatsApp;
+    private Long cliquesTelefone;
 }
