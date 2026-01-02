@@ -28,7 +28,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("""
         SELECT DATE(u.createdAt) as data, COUNT(u) as quantidade
-        FROM Usuario u
+uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu  uuuuuuuuuuuuuuuuu      FROM Usuario u
         WHERE u.createdAt BETWEEN :inicio AND :fim
         GROUP BY DATE(u.createdAt)
         ORDER BY DATE(u.createdAt)
