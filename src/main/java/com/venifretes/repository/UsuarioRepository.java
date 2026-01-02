@@ -25,4 +25,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     long countByRole(Role role);
     long countByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
     long countByCreatedAtAfter(LocalDateTime start);
+
+    // People management - advanced search queries
+    Page<Usuario> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+    Page<Usuario> findByEmailContainingIgnoreCase(String email, Pageable pageable);
+    Page<Usuario> findByNomeContainingIgnoreCaseAndRole(String nome, Role role, Pageable pageable);
+    Page<Usuario> findByNomeContainingIgnoreCaseAndAtivo(String nome, Boolean ativo, Pageable pageable);
+    Page<Usuario> findByRoleAndAtivo(Role role, Boolean ativo, Pageable pageable);
+    Page<Usuario> findByNomeContainingIgnoreCaseAndRoleAndAtivo(String nome, Role role, Boolean ativo, Pageable pageable);
+    Page<Usuario> findByAtivo(Boolean ativo, Pageable pageable);
 }

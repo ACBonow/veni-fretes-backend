@@ -86,4 +86,27 @@ public interface FreteiroRepository extends JpaRepository<Freteiro, Long>,
     long countByVerificadoTrue();
 
     long countByAtivoTrue();
+
+    // People management - advanced filtering
+    Page<Freteiro> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+    Page<Freteiro> findByCidadeContainingIgnoreCase(String cidade, Pageable pageable);
+    Page<Freteiro> findByNomeContainingIgnoreCaseAndAtivo(String nome, Boolean ativo, Pageable pageable);
+    Page<Freteiro> findByNomeContainingIgnoreCaseAndVerificado(String nome, Boolean verificado, Pageable pageable);
+    Page<Freteiro> findByCidadeContainingIgnoreCaseAndAtivo(String cidade, Boolean ativo, Pageable pageable);
+    Page<Freteiro> findByAtivoAndVerificado(Boolean ativo, Boolean verificado, Pageable pageable);
+
+    @Query("""
+        SELECT f FROM Freteiro f
+        WHERE (:nome IS NULL OR LOWER(f.nome) LIKE LOWER(CONCAT('%', :nome, '%')))
+        AND (:cidade IS NULL OR LOWER(f.cidade) LIKE LOWER(CONCAT('%', :cidade, '%')))
+        AND (:ativo IS NULL OR f.ativo = :ativo)
+        AND (:verificado IS NULL OR f.verificado = :verificado)
+    """)
+    Page<Freteiro> findByFilters(
+        @Param("nome") String nome,
+        @Param("cidade") String cidade,
+        @Param("ativo") Boolean ativo,
+        @Param("verificado") Boolean verificado,
+        Pageable pageable
+    );
 }
