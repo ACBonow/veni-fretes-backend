@@ -25,13 +25,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     long countByRole(Role role);
     long countByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
     long countByCreatedAtAfter(LocalDateTime start);
-
-    @Query("""
-        SELECT DATE(u.createdAt) as data, COUNT(u) as quantidade
-uuuuuuuuuuuuuuuuuuuuuuuuuuuuuu  uuuuuuuuuuuuuuuuu      FROM Usuario u
-        WHERE u.createdAt BETWEEN :inicio AND :fim
-        GROUP BY DATE(u.createdAt)
-        ORDER BY DATE(u.createdAt)
-    """)
-    Object[] countByDayBetween(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
 }
