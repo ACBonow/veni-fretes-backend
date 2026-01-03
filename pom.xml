@@ -140,12 +140,6 @@
             <version>7.4</version>
         </dependency>
 
-        <!-- Apache HttpClient para RestTemplate -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
-
         <!-- DotEnv - Load .env files -->
         <dependency>
             <groupId>me.paulschwarz</groupId>
