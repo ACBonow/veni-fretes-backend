@@ -14,7 +14,7 @@ public class WhatsAppServiceImpl implements WhatsAppService {
     @Override
     public void enviarNotificacao(String telefone, String mensagem) {
         if (!enabled) {
-            log.info("WhatsApp desabilitado. Mensagem não enviada para {}: {}",
+            log.warn("Tentativa de envio de WhatsApp com serviço desabilitado (fallback ativo): telefone={}, mensagem={}",
                     telefone, mensagem);
             return;
         }

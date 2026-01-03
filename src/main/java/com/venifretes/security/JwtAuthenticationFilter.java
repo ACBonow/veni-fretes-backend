@@ -48,7 +48,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            log.error("Erro ao autenticar usuário", e);
+            log.warn("Falha na autenticação JWT: message={}, uri={}, ip={}",
+                e.getMessage(),
+                request.getRequestURI(),
+                request.getRemoteAddr());
         }
 
         filterChain.doFilter(request, response);

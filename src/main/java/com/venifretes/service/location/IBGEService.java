@@ -1,5 +1,6 @@
 package com.venifretes.service.location;
 
+import com.venifretes.exception.ExternalServiceException;
 import com.venifretes.model.entity.Cidade;
 import com.venifretes.model.entity.Estado;
 import com.venifretes.repository.CidadeRepository;
@@ -41,7 +42,8 @@ public class IBGEService {
         // Check if already imported
         long existing = cidadeRepository.countByEstado(estado);
         if (existing > 0) {
-            log.warn("State {} already has {} cities. Skipping import.", estadoSigla, existing);
+            log.warn("Tentativa de importar cidades para estado que já possui dados (fallback: skip): estado={}, cidadesExistentes={}",
+                estadoSigla, existing);
             return;
         }
 
@@ -49,7 +51,13 @@ public class IBGEService {
         String url = String.format("%s/localidades/estados/%s/municipios", IBGE_API_BASE, estadoSigla);
 
         try {
+            long startTime = System.currentTimeMillis();
             List<Map<String, Object>> response = restTemplate.getForObject(url, List.class);
+            long duration = System.currentTimeMillis() - startTime;
+
+            if (duration > 3000) {
+                log.warn("Chamada IBGE API lenta: estado={}, duration={}ms, url={}", estadoSigla, duration, url);
+            }
 
             if (response == null || response.isEmpty()) {
                 log.error("No cities returned from IBGE API for state: {}", estadoSigla);
@@ -79,8 +87,9 @@ public class IBGEService {
             log.info("Successfully imported {} cities for state {}", imported, estadoSigla);
 
         } catch (Exception e) {
-            log.error("Error importing cities from IBGE for state {}: {}", estadoSigla, e.getMessage());
-            throw new RuntimeException("Failed to import cities from IBGE", e);
+            log.error("Error importing cities from IBGE for state {}: {}", estadoSigla, e.getMessage(), e);
+            throw new ExternalServiceException("IBGE API",
+                "Falha ao importar cidades do IBGE para " + estadoSigla, e);
         }
     }
 

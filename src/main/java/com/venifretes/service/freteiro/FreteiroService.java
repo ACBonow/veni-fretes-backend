@@ -57,6 +57,10 @@ public class FreteiroService {
 
         while (freteiroRepository.existsBySlug(slug)) {
             slug = originalSlug + "-" + counter++;
+            if (counter > 100) {
+                log.warn("Geração de slug excessiva: nome={}, counter={}", nome, counter);
+                break;
+            }
         }
 
         return slug;

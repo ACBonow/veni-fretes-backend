@@ -20,7 +20,10 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
                         AuthenticationException authException)
             throws IOException, ServletException {
 
-        log.error("Erro de autenticação: {}", authException.getMessage());
+        log.warn("Tentativa de acesso não autorizado: uri={}, ip={}, message={}",
+            request.getRequestURI(),
+            request.getRemoteAddr(),
+            authException.getMessage());
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Não autorizado");
     }
 }

@@ -99,6 +99,11 @@ public class AdminReviewService {
                 ? avaliacao.getUsuario().getNome()
                 : avaliacao.getNomeAvaliador();
 
+        if (avaliacao.getUsuario() == null && avaliacao.getNomeAvaliador() == null) {
+            log.warn("Avaliação com dados de contratante inconsistentes: avaliacaoId={}, freteiroId={}",
+                avaliacao.getId(), avaliacao.getFreteiro().getId());
+        }
+
         return ReviewListResponse.builder()
                 .id(avaliacao.getId())
                 .freteiroNome(avaliacao.getFreteiro().getNome())

@@ -1,6 +1,7 @@
 package com.venifretes.exception;
 
 import com.venifretes.dto.response.ApiErrorResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,10 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleResourceNotFound(ResourceNotFoundException ex) {
+    public ResponseEntity<ApiErrorResponse> handleResourceNotFound(ResourceNotFoundException ex,
+                                                                   HttpServletRequest request) {
+        log.warn("Resource not found: message={}, uri={}", ex.getMessage(), request.getRequestURI());
+
         ApiErrorResponse error = ApiErrorResponse.builder()
             .timestamp(LocalDateTime.now())
             .status(HttpStatus.NOT_FOUND.value())
@@ -51,6 +55,52 @@ public class GlobalExceptionHandler {
             .build();
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+    }
+
+    @ExceptionHandler(DataInconsistencyException.class)
+    public ResponseEntity<ApiErrorResponse> handleDataInconsistency(DataInconsistencyException ex,
+                                                                    HttpServletRequest request) {
+        log.warn("Data inconsistency detected: message={}, uri={}", ex.getMessage(), request.getRequestURI());
+
+        ApiErrorResponse error = ApiErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.CONFLICT.value())
+            .error("Data Inconsistency")
+            .message(ex.getMessage())
+            .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(ExternalServiceException.class)
+    public ResponseEntity<ApiErrorResponse> handleExternalService(ExternalServiceException ex,
+                                                                  HttpServletRequest request) {
+        log.error("External service error: service={}, message={}, uri={}",
+            ex.getServiceName(), ex.getMessage(), request.getRequestURI());
+
+        ApiErrorResponse error = ApiErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.SERVICE_UNAVAILABLE.value())
+            .error("External Service Error")
+            .message("Serviço temporariamente indisponível: " + ex.getServiceName())
+            .build();
+
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(error);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<ApiErrorResponse> handleValidation(ValidationException ex) {
+        log.warn("Custom validation error: message={}, errors={}", ex.getMessage(), ex.getValidationErrors());
+
+        ApiErrorResponse error = ApiErrorResponse.builder()
+            .timestamp(LocalDateTime.now())
+            .status(HttpStatus.BAD_REQUEST.value())
+            .error("Validation Error")
+            .message(ex.getMessage())
+            .details(ex.getValidationErrors())
+            .build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

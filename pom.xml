@@ -133,6 +133,19 @@
             <version>3.7.0</version>
         </dependency>
 
+        <!-- JSON Structured Logging -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>7.4</version>
+        </dependency>
+
+        <!-- Apache HttpClient para RestTemplate -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
         <!-- DotEnv - Load .env files -->
         <dependency>
             <groupId>me.paulschwarz</groupId>

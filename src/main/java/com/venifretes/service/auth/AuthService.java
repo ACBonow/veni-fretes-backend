@@ -41,9 +41,11 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request) {
         // Validações
         if (usuarioRepository.existsByEmail(request.getEmail())) {
+            log.warn("Tentativa de registro com email duplicado: email={}", request.getEmail());
             throw new BusinessException("Email já cadastrado");
         }
         if (usuarioRepository.existsByTelefone(request.getTelefone())) {
+            log.warn("Tentativa de registro com telefone duplicado: telefone={}", request.getTelefone());
             throw new BusinessException("Telefone já cadastrado");
         }
 
@@ -117,6 +119,8 @@ public class AuthService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
+            log.warn("Tentativa de acesso com autenticação inválida: authenticated={}",
+                authentication != null ? authentication.isAuthenticated() : "null");
             throw new BusinessException("Usuário não autenticado");
         }
 

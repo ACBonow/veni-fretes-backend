@@ -113,6 +113,10 @@ public class AdminStatsService {
 
         // Receita de assinaturas
         BigDecimal receitaTotalAssinaturas = assinaturaRepository.getTotalReceitaAssinaturas();
+        if (receitaTotalAssinaturas == null) {
+            log.warn("Receita total de assinaturas retornou null (fallback: ZERO)");
+            receitaTotalAssinaturas = BigDecimal.ZERO;
+        }
         BigDecimal receitaUltimos30Dias = assinaturaRepository.getReceitaPeriodo(ultimos30Dias);
         long assinaturasAtivas = assinaturaRepository.countByStatus(StatusAssinatura.ATIVA)
                 + assinaturaRepository.countByStatus(StatusAssinatura.EM_PERIODO_TESTE);
@@ -180,6 +184,7 @@ public class AdminStatsService {
         if (notaMediaGeral != null) {
             notaMediaGeral = notaMediaGeral.setScale(2, RoundingMode.HALF_UP);
         } else {
+            log.warn("Nota média geral retornou null, usando valor padrão ZERO. totalAvaliacoes={}", totalAvaliacoes);
             notaMediaGeral = BigDecimal.ZERO;
         }
 
